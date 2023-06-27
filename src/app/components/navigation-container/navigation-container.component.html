@@ -1,0 +1,55 @@
+<mat-sidenav-container class="sidenav-container" [ngClass]="theme">
+
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <!-- Redirects to main collection -->
+    <a routerLink="main"><mat-toolbar>Main</mat-toolbar></a>
+    <mat-nav-list>
+
+      <a class="linkTag" *ngFor="let link of links" mat-list-item [routerLink]="link.url">
+      <div class="linkContainer">
+
+        <span>{{ link.name | slice:0:12 }}{{ link.name.length > 12 ? '...' : '' }}</span>
+        <button color="seconday" mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="deleteLink(link)">Delete</button>
+        </mat-menu>
+    </div>
+
+      </a>
+
+      <mat-form-field>
+        <mat-label>Add Folder</mat-label>
+        <input matInput [(ngModel)]="linkName" (keyup.enter)="addLink() ">
+      </mat-form-field>
+
+    </mat-nav-list>
+
+
+    <a class="settings" routerLink="/settings">
+      <mat-icon class="settings-icon">settings</mat-icon>
+    </a>
+  </mat-sidenav>
+
+
+  <mat-sidenav-content [ngStyle]="{'background-color': theme === 'darkMode' ? '#181818' : ''}">
+
+    <mat-toolbar color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>RecordAIClient</span>
+      <div (click)="toggleTheme()" class="toggleThemeIcon">
+        <mat-icon class="settings-icon">brightness_3</mat-icon>
+      </div>
+    </mat-toolbar>
+
+
+    <!-- ROUTER OUTLET CHANGING COMPONENT CONTAINER-->
+    <router-outlet [ngClass]="theme" ></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "audioai-b6b84": {
+      "hosting": {
+        "AudioAIClient": [
+          "audioai-b6b84"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "audioai-b6b84"
+  }
+}

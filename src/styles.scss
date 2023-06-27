@@ -1,0 +1,99 @@
+/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+// HERE WE CREATE OUR OWN PALETTE FOR LIGHT AND DARK MODE
+// ...
+$primary-light-palette: (
+  50: #FFFFFF,
+  100: #EFEFEF,
+  200: #D2D2D2,
+  300: #BFBFBF,
+  400: #B1B1B1,
+  500: #A4A4A4,
+  600: #F5F5F5,
+  700: #DADADA,
+  800: #C9C9C9,
+  900: #D0D0D0,
+  contrast: (
+    50: #000000,
+    100: #282828,
+    200: #474747,
+    300: #5e5e5e,
+    400: #6a6a6a,
+    500: #777777,
+    600: #1a1a1a,
+    700: #2e2e2e,
+    800: #3b3b3b,
+    900: #343434,
+  )
+);
+
+$primary-dark-palette: (
+  50: #272727,
+  100: #282828,
+  200: #474747,
+  300: #5e5e5e,
+  400: #6a6a6a,
+  500: #777777,
+  600: #1a1a1a,
+  700: #2e2e2e,
+  800: #3b3b3b,
+  900: #343434,
+  contrast: (50: #FFFFFF,
+    100: #EFEFEF,
+    200: #D2D2D2,
+    300: #BFBFBF,
+    400: #B1B1B1,
+    500: #A4A4A4,
+    600: #F5F5F5,
+    700: #DADADA,
+    800: #C9C9C9,
+    900: #D0D0D0,
+  )
+);
+
+
+
+$dark-primary: mat.define-palette($primary-dark-palette, 50, 100, 200);
+$dark-accent: mat.define-palette($primary-dark-palette, 300, 400, 500);
+
+$light-primary: mat.define-palette($primary-light-palette, 50, 100, 200);
+$light-accent: mat.define-palette($primary-light-palette, 300, 400, 500);
+
+// Define a dark theme
+$dark-theme: mat.define-dark-theme((color: (primary: $dark-primary,
+        accent: $dark-accent,
+      ),
+      // Only include `typography` and `density` in the default dark theme.
+      typography: mat.define-typography-config(),
+      density: 0,
+    ));
+
+// Define a light theme
+$light-theme: mat.define-light-theme((color: (primary: mat.define-palette($light-primary),
+        accent: mat.define-palette($light-accent),
+      ),
+    ));
+
+// Apply the dark theme by default
+@include mat.all-component-themes($light-theme);
+
+// Apply the light theme only when the user prefers light themes.
+.darkMode {
+  @include mat.all-component-themes($dark-theme);
+}
+
+
+
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

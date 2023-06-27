@@ -1,0 +1,142 @@
+body,
+button {
+  margin: 0;
+  padding: 0;
+}
+
+.audio-recorder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  height: 500px;
+
+}
+
+.spinnerWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.recorder-buttons {
+  display: flex;
+  margin-bottom: 2rem;
+  gap: 2rem;
+  align-items: center;
+}
+
+.round-button {
+  border: none;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.start-button {
+  background-color: #28a745;
+}
+
+.stop-button {
+  background-color: #dc3545;
+  width: 80px;
+  height: 80px;
+}
+
+.resume-button {
+  width: 80px;
+  height: 80px;
+}
+
+
+.start-button:hover {
+  transform: scale(1.1);
+}
+
+.stop-button:hover {
+  transform: scale(1.1);
+}
+
+.timer {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.recording-animation {
+  width: 50px;
+  height: 50px;
+  background-color: #dc3545;
+  border-radius: 50%;
+  animation: pulse 1s infinite;
+  margin-bottom: 2rem;
+  opacity: 0;
+}
+
+.recording {
+  animation-name: blink;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
+  }
+
+  100% {
+    transform: scale(0.8);
+    box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+  }
+}
+
+.playback-button {
+  margin-top: 2rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+
+
+button:hover {
+  background-color: #0069d9;
+}
+
+.season {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.seasons {
+  height: 20%;
+}

@@ -1,0 +1,44 @@
+<div *ngIf="!loading; else elseBlock">
+
+
+  <mat-card *ngFor="let document of documents" color="primary">
+    <mat-card-header>
+      <mat-card-title *ngIf="!editMode">{{ document!.title }}</mat-card-title>
+      <mat-card-title *ngIf="editMode">
+        <input type="text" class="p-like" [(ngModel)]="document.title">
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p *ngIf="!editMode">{{ document!.transcription }}</p>
+      <textarea *ngIf="editMode" class="p-like" [(ngModel)]="document.transcription"></textarea>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="playAudio(document!.audio)">Play Audio</button>
+      <button mat-button *ngIf="editMode" (click)="saveChanges()">Save Changes</button>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="editDocument()">Edit</button>
+        <button mat-menu-item (click)="deleteItem(document.id)">Delete</button>
+      </mat-menu>
+    </mat-card-actions>
+  </mat-card>
+
+  <button *ngIf="routeDoesExist" mat-fab class="add-btn" (click)="openDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <ng-template #dialog>
+    <app-audio-recorder-popup></app-audio-recorder-popup>
+  </ng-template>
+
+  <h1 class="folderDoesNotExistHeading" *ngIf="!routeDoesExist && !loading">Folder does not exist</h1>
+
+
+
+
+</div>
+
+
+<ng-template #elseBlock><div class="spinnerWrapper"><mat-spinner></mat-spinner></div></ng-template>

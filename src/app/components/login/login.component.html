@@ -1,0 +1,34 @@
+<section class="mainLoginSection">
+  <h1>Login</h1>
+
+  <h2>Welcome back! Please log in</h2>
+  <form [formGroup]="loginForm">
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email">
+
+      <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        <div *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</div>
+        <div *ngIf="loginForm.get('email')?.errors?.['email']">Invalid email format</div>
+      </mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password">
+
+      <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        <div *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</div>
+        <div *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters</div>
+      </mat-error>
+
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="button" (click)="emailLogin()" [disabled]="loginForm.invalid">Log
+      in
+      with Email/Password</button>
+    <button  mat-raised-button color="accent" type="button" (click)="googleLogin()" class="googleButton">Log in with Google</button>
+    <p>Don't have an account? <a routerLink="/signup">Sign up</a></p>
+  </form>
+</section>

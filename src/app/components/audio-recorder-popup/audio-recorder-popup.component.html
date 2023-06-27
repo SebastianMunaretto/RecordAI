@@ -1,0 +1,29 @@
+<div *ngIf="!loading; else elseBlock">
+  <div class="audio-recorder">
+    <div class="recorder-buttons">
+      <button class="round-button start-button" (click)="startRecording()">
+        <mat-icon>mic</mat-icon>
+      </button>
+      <button class="round-button stop-button" (click)="stopRecording()" *ngIf="!showResumeButton">
+        <mat-icon>stop</mat-icon>
+      </button>
+      <button class="round-button resume-button" (click)="resumeRecording()" *ngIf="showResumeButton">
+        <mat-icon>play_arrow</mat-icon>
+      </button>
+    </div>
+    <div class="timer">{{ getFormattedTime() }}</div>
+    <div class="recording-animation" [style.opacity]="recording ? '100' : '0'"></div>
+
+    <div class="seasons">
+      <div *ngFor="let season of seasons" class="season">
+        <div class="id">{{ season.id }}</div>
+        <div class="duration">{{ getFormattedDuration(season.duration) }}</div>
+        <button (click)="playSeason(season.url)">Play</button>
+        <button (click)="transcribeAudio(season.url)">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #elseBlock><div class="spinnerWrapper"><mat-spinner></mat-spinner></div></ng-template>
