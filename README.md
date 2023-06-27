@@ -16,7 +16,7 @@ Record.AI ist eine benutzerfreundliche Anwendung, mit der Sie mühelos Audioaufn
 
 1. Klone das Repository: `git clone git@github.com:SebastianMunaretto/RecordAI.git`
 2. Installiere die benötigten Abhängigkeiten: `npm install`
-3. Füge API keys in enviornment files ein (FIREBASE, OPENAI) `RecordAI/src/environments/`
+3. Füge API keys in environment files ein (FIREBASE, OPENAI) `RecordAI/src/environments/`
 
 ## Verwendung
 
